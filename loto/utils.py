@@ -2,7 +2,7 @@ import random
 
 
 class NumBox:
-    num_range = 4
+    num_range = 90
 
     def __init__(self):
         self.numbers = [x for x in range(1, self.num_range + 1)]

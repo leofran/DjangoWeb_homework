@@ -52,11 +52,11 @@ class Game:
 
         counter = 0
         winners =[]
-        while not winners :
+        persons_alive = [person for person in self.persons if person.alive]
+        players_alive = self.computers + persons_alive
+        while not winners and players_alive:
             counter += 1
             num = self.box.num_out()
-            persons_alive = [person for person in self.persons if person.alive]
-            players_alive = self.computers + persons_alive
             if len(persons_alive) != 0: sleep(1)
             print(f"\n--- Step {counter} ---\nNew number from box: {num} (It's {len(self.box)} nums left in box now)\n")
             if len(persons_alive) != 0: sleep(1)
@@ -76,14 +76,17 @@ class Game:
                 if player.no_num_in_card() or (len(players_alive) == 1 and len(persons_alive) == 0):
                     winners.append(player.name)
 
-        print("\nWe have winners!!!\nHere they are:", ", ".join(winners))
+        if winners:
+            print("\nWe have winners!!!\nHere they are:", ", ".join(winners))
+        else:
+            print("\nThere are no winners of the game.")
 
 
 if __name__ == "__main__":
     while True:
         game = Game()
         game.run()
-        play = input("\nOnce more game (y - yes, empty - no)?: ")
+        play = input("\nOne more game (y - yes, empty - no)?: ")
         if not play in ("Y", "y", "Yes", "yes"):
             break
 
