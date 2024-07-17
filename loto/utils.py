@@ -49,7 +49,7 @@ class NumCard:
         return card
 
     def print_card(self):
-        print("{:-^27}".format(f" {self.name} "))
+        print(f"{(" " + self.name + " "):-^{3 * NumCard.cells_in_row}}")
 
         for row in range(self.rows_number):
             for cell in range(self.cells_in_row):
