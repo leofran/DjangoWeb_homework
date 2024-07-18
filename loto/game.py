@@ -15,19 +15,24 @@ class Game:
     def call_players(self, kind_of_players):
         players_in_game = input(f"How many {kind_of_players}s are playing the game: ")
         players_in_game = int(players_in_game) if players_in_game.isdigit() else 0
+
         new_players = []
         if players_in_game:
             name_players = input(f"It is {players_in_game} {kind_of_players}(s) in game. You can give them names (Y - I will, empty - default names): ")
             name_players = name_players in ("Y", "y", "Yes", "yes")
+
             for x in range(players_in_game):
                 counter = len(self.players) + 1
                 player_name = f"Player_{kind_of_players}_{counter}"
+
                 if name_players:
                     input_name = input(f"Write name for playing {kind_of_players} number_{counter} (empty - default name): ")
                     if input_name.strip():
                         player_name = input_name
+
                 card_obj = ComputerPlayer if kind_of_players == "computer" else PersonPlayer
                 player = card_obj(player_name)
+
                 self.players.append(player)
                 new_players.append(player)
 
@@ -39,8 +44,10 @@ class Game:
 
         while True:
             self.choose_players()
+
             if len(self.players) > 0:
                 break
+
             print("\nThere are no players in the game. Try one more :)")
             sleep(1)
 

@@ -17,6 +17,7 @@ class NumBox:
 
     def num_out(self) -> int:
         self.pointer += 1
+
         try:
             return self.numbers[self.pointer - 1]
         except ValueError:
@@ -39,6 +40,7 @@ class NumCard:
         for row in range(NumCard.rows_number):
             tmp_nums = sorted(nums[row * NumCard.cells_filled_in_row:(row + 1) * NumCard.cells_filled_in_row])
             next_num = tmp_nums.pop()
+
             for cell in reversed(range(self.cells_in_row)):
                 if len(tmp_nums)  == cell or random.randint(0, 1):
                     card[row][cell] = next_num
@@ -65,6 +67,7 @@ class NumCard:
                 cell = row.index(num)
             except ValueError:
                 continue
+
             row[cell] = "-"
             self.nums_left -= 1
             return True
