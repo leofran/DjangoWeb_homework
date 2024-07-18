@@ -33,10 +33,6 @@ class Game:
 
         return new_players
 
-    def person_choice(self, person, num):
-        choice = input(f"\n{person.name} -> Is there {num} in your card (y - yes, empty - no): ")
-        return choice in ("Y", "y", "Yes", "yes")
-
     def run(self):
         print("\n*** NEW GAME ***\n")
         self.box.shuffle()
@@ -63,7 +59,7 @@ class Game:
             for player in players_alive:
                 player.print_card()
             for person in persons_alive:
-                if self.person_choice(person, num) == person.num_in_card(num):
+                if person.num_choice(num) == person.num_in_card(num):
                     print("Pass on!")
                 else:
                     print("Game over for you (((")
@@ -73,7 +69,7 @@ class Game:
             for computer in self.computers:
                 computer.num_in_card(num)
             for player in players_alive:
-                if player.no_num_in_card() or (len(players_alive) == 1 and len(persons_alive) == 0):
+                if not player.nums_left or (len(players_alive) == 1 and len(persons_alive) == 0):
                     winners.append(player.name)
 
         if winners:

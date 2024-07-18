@@ -30,6 +30,7 @@ class NumCard:
 
     def __init__(self):
         self.matrix = self.new_card()
+        self.nums_left = NumCard.rows_number * NumCard.cells_filled_in_row
 
     def new_card(self):
         nums = random.sample(range(1, NumBox.num_range + 1), NumCard.rows_number * NumCard.cells_filled_in_row)
@@ -65,18 +66,14 @@ class NumCard:
             except ValueError:
                 continue
             row[cell] = "-"
+            self.nums_left -= 1
             return True
 
         return False
 
-    def no_num_in_card(self):
-        for row in self.matrix:
-            try:
-                [x for x in row if x.isdigit()]
-            except AttributeError:
-                return False
-
-        return True
+    def num_choice(self, num):
+        choice = input(f"\n{self} -> Is there {num} in your card (y - yes, empty - no): ")
+        return choice in ("Y", "y", "Yes", "yes")
 
 
 class PersonPlayer(NumCard):
