@@ -17,7 +17,7 @@ class Game:
         players_in_game = int(players_in_game) if players_in_game.isdigit() else 0
         new_players = []
         if players_in_game:
-            # print("players: ", players_in_game)
+            print("players: ", players_in_game)
             name_players = input(f"It is {players_in_game} {kind_of_players}(s) in game. You can give them names (Y - I will, empty - default names): ")
             name_players = name_players in ("Y", "y", "Yes", "yes")
             for x in range(players_in_game):
