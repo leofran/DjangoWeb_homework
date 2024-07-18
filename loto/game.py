@@ -41,7 +41,7 @@ class Game:
             self.choose_players()
             if len(self.players) > 0:
                 break
-            print("\nThere are no players in the game. Try once more :)")
+            print("\nThere are no players in the game. Try one more :)")
             sleep(1)
 
         print("\nLet's begin :)")
@@ -53,24 +53,29 @@ class Game:
         while not winners and players_alive:
             counter += 1
             num = self.box.num_out()
+
             if len(persons_alive) != 0: sleep(1)
             print(f"\n--- Step {counter} ---\nNew number from box: {num} (It's {len(self.box)} nums left in box now)\n")
             if len(persons_alive) != 0: sleep(1)
+
             for player in players_alive:
                 player.print_card()
+
             for person in persons_alive:
                 if person.num_choice(num) == person.num_in_card(num):
                     print("Pass on!")
                 else:
                     print("Game over for you (((")
                     person.alive = False
-            persons_alive = [person for person in self.persons if person.alive]
-            players_alive = self.computers + persons_alive
+
             for computer in self.computers:
                 computer.num_in_card(num)
+
+            persons_alive = [person for person in self.persons if person.alive]
+            players_alive = self.computers + persons_alive
             for player in players_alive:
                 if not player.nums_left or (len(players_alive) == 1 and len(persons_alive) == 0):
-                    winners.append(player.name)
+                    winners.append(str(player))
 
         if winners:
             print("\nWe have winners!!!\nHere they are:", ", ".join(winners))
@@ -80,8 +85,7 @@ class Game:
 
 if __name__ == "__main__":
     while True:
-        game = Game()
-        game.run()
+        Game().run()
         play = input("\nOne more game (y - yes, empty - no)?: ")
         if not play in ("Y", "y", "Yes", "yes"):
             break
