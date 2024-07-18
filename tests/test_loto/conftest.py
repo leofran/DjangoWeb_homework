@@ -1,7 +1,3 @@
-from pytest import fixture
-# from loto import Game
-
-# @fixture
 def flat(lis):
     flatList = []
     for element in lis:
