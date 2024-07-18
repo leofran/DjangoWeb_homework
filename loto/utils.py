@@ -24,9 +24,12 @@ class NumBox:
 
 
 class NumCard:
-    rows_number = min(3, NumBox.num_range - 1)
-    cells_filled_in_row = min(5, NumBox.num_range // rows_number)
-    cells_in_row = max(9, cells_filled_in_row * 2 - 1)
+    # rows_number = min(3, NumBox.num_range - 1)
+    # cells_filled_in_row = min(5, NumBox.num_range // rows_number)
+    # cells_in_row = max(9, cells_filled_in_row * 2 - 1)
+    rows_number = 1
+    cells_filled_in_row = 1
+    cells_in_row = 2
 
     def __init__(self):
         self.matrix = self.new_card()
